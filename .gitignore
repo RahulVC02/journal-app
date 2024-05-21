@@ -1,0 +1,7 @@
+# .gitignore
+.env
+thesys_env
+other_attempts
+__pycache__
+static
+templates

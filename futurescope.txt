@@ -1,0 +1,11 @@
+Storage of a task must be an atomic query (not distributed across multiple queries) to ensure that it is embedded as one key, and retrieved as one too.
+
+Currently, a query can only be of one type- ability to parse and split into multiple storage+retrieval queries recursively can be added.
+
+Deleting or updating information if it was incorrectly stored by a user prompt, or if it is no longer needed (two more separate branches of 
+function calling)
+
+How to determine the number of records to retrieve? (heuristic based on semantic similarity score, upper-bound by LLM context size, can lead
+to irrelevant information being retrieved)
+
+Check out temperature settings.
