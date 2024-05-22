@@ -108,7 +108,8 @@ You will be given multiple inputs-
 2. Some of the following inputs will be sentences related to the query- they will be the answer to the query. 
    Some of the other inputs will not be related to the query-they will not be the answer to the query.
 
-You need to generate an output which combines all the input sentences which are related to the input query and presents them as an 
+Judge which of the input sentences are related to the input query and which are not.
+You need to generate an output which combines the input sentences which are related to the input query and presents them as an 
 answer to the input query. You must not include the unrelated input sentences in your answer to the input query.
 You could have a large number of such input sentences. You need to judge which input sentences are related and should be included in your 
 answer to the input query, and which input sentences are not related and shouldn't be included in your answer.
@@ -177,17 +178,18 @@ def call_function(args,name):
 PROMPT_CLASSIFIER_SYSTEM_MESSAGE = {
     "role": "system",
     "content": """
-You are a journal app. You can either store the query in your memory or retrieve information from your memory.
+You are a helpful assistant that classifies user inputs into three categories: storage, retrieval, and irrelevant.
 
-You will strore informations like grocery lists, reminders, incidents, future tasks, daily entries, dreams, things that you need to do in the future etc.
+You will store information about things that the user feels they should do in the future. Few examples are grocery lists, reminders, incidents, 
+future tasks, daily entries, dreams, things that you need to do in the future etc.
 
-If you get a query that could ask for a information that should be stored in a journal app, you should say that the query is for retrieval.
-If the query is not asking general information, but asking for tasks, past incidents, future plans, etc., you should say that the query is for retrieval.
+If you get a query that asks for information such as reminders, tasks, past incidents, places, recommendations, future plans- information that may have 
+been stored in a journal app, you should say that the query is for retrieval. 
 
-If you feel the query is irrelevant for a journal app, you can say that the query is irrelevant.                                          
+If you feel the query is irrelevant for a journal app, you can say that the query is irrelevant. They will be about topics unrelated to a journal app, 
+typically containing information that you have never stored or retrieved.                                          
                                                  
 Read the query carefully and think whether a journal app should store the query, retrieve information from the query, or if the query is irrelevant.
-
 
 Here are some examples:
 
